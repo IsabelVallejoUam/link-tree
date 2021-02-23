@@ -21,7 +21,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user/{email}', [ProfileController::class, 'profile']);
+Route::get('/user/{email}', [ProfileController::class, 'index']);
 
 Auth::routes();
 
@@ -29,7 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('/links', App\Http\Controllers\LinkController::class);
     Route::resource('/socialNetworks', App\Http\Controllers\SocialNetworkController::class);
-    Route::get('/user', 'ProfileController@profile');
-    //Route::get('edit',[ProfileController::class, 'edit']);
+    Route::get('/user', 'App\Http\Controllers\ProfileController@index');
+    Route::resource('/user', App\Http\Controllers\ProfileController::class);
 
 });

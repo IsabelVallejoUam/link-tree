@@ -13,15 +13,7 @@ use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
-    public function profile()
-    {
-        $links = Link::ownedBy(Auth::id())->simplePaginate(5);
-        $socialNetworks = SocialNetwork::ownedBy(Auth::id())->simplePaginate(5);
-        $user = auth()->user();  
 
-        return view('user.profile', ['user' => User::findOrFail($user->id)], compact('socialNetworks','links','user'));
-
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -56,7 +48,7 @@ class ProfileController extends Controller
         }
         $user->save();
 
-        return redirect(route('user.profile', ['user' => User::findOrFail($user->id)]), compact('socialNetworks','links','user'))->with('_success', '¡Perfil editado exitosamente!');
+        return redirect(route('user.index', ['user' => User::findOrFail($user->id)]), compact('socialNetworks','links','user'))->with('_success', '¡Perfil editado exitosamente!');
 
     }
 
@@ -84,7 +76,12 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //NO TIENE
+        $links = Link::ownedBy(Auth::id())->simplePaginate(5);
+        $socialNetworks = SocialNetwork::ownedBy(Auth::id())->simplePaginate(5);
+        $user = auth()->user();  
+
+        return view('user.index', ['user' => User::findOrFail($user->id)], compact('socialNetworks','links','user'));
+
     }
 
     /**
@@ -114,8 +111,8 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        return view('user.show', compact('user'));
     }
 }

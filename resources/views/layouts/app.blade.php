@@ -94,18 +94,18 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                    {{-- <a class="dropdown-item" href="{{ route('user.{email}', auth()->user()->email) }}"><i class="fas fa-plus"></i> Ver Perfil</a>
-                                    <a class="dropdown-item" href="{{ route('user.edit', auth()->user()->email) }}"><i class="fas fa-profile"></i>
+                                    <a class="dropdown-item" href="{{ route('user.show', auth()->user()->email) }}"><i class="fas fa-plus"></i> Ver Perfil</a>
+                                    <a class="dropdown-item" href="{{ route('user.edit', auth()->user()->id) }}"><i class="fas fa-profile"></i>
                                         Editar Perfil</a>
-                                    <a class="dropdown-item" href="{{ route('user.show', auth()->user()->email)}}"><i class="fas fa-eye"></i>
-                                        Ver Informacion de Perfil</a>
-                                    <a class="dropdown-item" href="{{ route('user.destroy', auth()->user()->email) }}"><i
-                                            class="fas fa-plus"></i> Eliminar Perfil</a>
-                                            
-                                    --}} <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    {{-- <a class="dropdown-item" href="{{ route('user.show', auth()->user()->id)}}"><i class="fas fa-eye"></i>
+                                        Ver Informacion de Perfil</a> --}}
+                                    {{-- <a class="dropdown-item" href="{{ route('user.destroy', auth()->user()->id) }}"><i
+                                            class="fas fa-plus"></i> Eliminar Perfil</a> --}}
+                                      
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
                                         <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
-                                    </a> 
+                                    </a>  
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
