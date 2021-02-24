@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\UserController;
+use App\Http\Controllers\api\SocialNetworkController;
+use App\Http\Controllers\api\LinkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +20,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('users', UserController::class);
+
+Route::apiResource('SocialNetworks', SocialNetworkController::class);
+
+Route::apiResource('links', LinkController::class);
