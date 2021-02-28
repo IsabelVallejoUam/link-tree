@@ -26,7 +26,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    Link Tree App 
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -97,8 +97,8 @@
                                     <a class="dropdown-item" href="{{ route('user.show', auth()->user()->email) }}"><i class="fas fa-plus"></i> Ver Perfil</a>
                                     <a class="dropdown-item" href="{{ route('user.edit', auth()->user()->id) }}"><i class="fas fa-profile"></i>
                                         Editar Perfil</a>
-                                    {{-- <a class="dropdown-item" href="{{ route('user.show', auth()->user()->id)}}"><i class="fas fa-eye"></i>
-                                        Ver Informacion de Perfil</a> --}}
+                                    <a class="dropdown-item" href="{{ route('user.index', auth()->user()->id)}}"><i class="fas fa-eye"></i>
+                                        Ver Informacion de Perfil</a>
                                     {{-- <a class="dropdown-item" href="{{ route('user.destroy', auth()->user()->id) }}"><i
                                             class="fas fa-plus"></i> Eliminar Perfil</a> --}}
                                       

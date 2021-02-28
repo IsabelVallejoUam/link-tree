@@ -35,11 +35,15 @@ class ProfileController extends Controller
      */
     public function update(UserRequest $userRequest, User $user)
     {
+        $links = Link::ownedBy(Auth::id())->simplePaginate(5);
+        $socialNetworks = SocialNetwork::ownedBy(Auth::id())->simplePaginate(5);
 
         $user->name =  $userRequest->input('name');
         $user->email = $userRequest->input('email');
         $user->password = $userRequest->input('password');
-        // $user->profile_photo = $userRequest->input('profile_photo');
+        
+        $user->profile_photo = $userRequest->input('profile_photo');
+
         if($userRequest->hasFile('profile_photo')){
             $profile_photo = $userRequest->file('profile_photo');
             $filename = time() . '.' . $profile_photo->getClientOriginalExtension();
