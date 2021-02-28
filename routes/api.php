@@ -23,6 +23,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('users', UserController::class);
 
-Route::apiResource('SocialNetworks', SocialNetworkController::class);
+Route::apiResource('socialNetworks', SocialNetworkController::class);
 
 Route::apiResource('links', LinkController::class);

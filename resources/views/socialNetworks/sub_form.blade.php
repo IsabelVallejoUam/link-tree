@@ -4,7 +4,8 @@
      
      
   <option selected disabled value="">Elegir...</option>
-    @foreach ($social_network as $red)
+        <option selected="selected" value="{{ old('network', $socialNetwork->network ?? "") }}">{{ old('network', $socialNetwork->network ?? "") }} </option>
+    @foreach ($social_network as $red) 
         <option value="{{ $red['nombre'] }}">{{ $red['nombre'] }}</option>
     @endforeach 
       

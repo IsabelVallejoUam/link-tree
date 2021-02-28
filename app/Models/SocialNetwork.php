@@ -18,6 +18,7 @@ class SocialNetwork extends Model
     protected $fillable = [
         'url',
         'network',
+        'user_id',
     ];
 
     public function scopeOwnedBy($query, $user_id)

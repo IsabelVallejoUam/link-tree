@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\Link;
 use Illuminate\Http\Request;
+use App\Http\Requests\LinkRequest;
 
 class LinkController extends Controller
 {
@@ -15,7 +16,7 @@ class LinkController extends Controller
      */
     public function index()
     {
-        $links = Link::orderBy('name', 'asc')->get();
+        $links = Link::orderBy('user_id', 'asc')->get();
         return response()->json(['data' => $links], 200);
     }
 
@@ -26,9 +27,9 @@ class LinkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LinkRequest $linkRequest)
     {
-        $link = Link::create($request->all());
+        $link = Link::create($linkRequest->all());
 
         return response()->json(['data' => $link], 201);
     }
@@ -53,9 +54,9 @@ class LinkController extends Controller
      * @param  \App\Models\Link  $link
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Link $link)
+    public function update(LinkRequest $linkRequest, Link $link)
     {
-        $link->update($request->all());
+        $link->update($linkRequest->all());
 
         return response()->json(['data' => $link], 200);
     }

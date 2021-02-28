@@ -3,8 +3,12 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
+
 
 class SocialNetworkRequest extends FormRequest
+
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,5 +31,10 @@ class SocialNetworkRequest extends FormRequest
             'url' => 'required|max:256|url',
             'network' => 'required'
         ];
+    }
+    
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json($validator->errors(), 422));
     }
 }

@@ -3,6 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
+
 
 class LinkRequest extends FormRequest
 {
@@ -27,5 +30,10 @@ class LinkRequest extends FormRequest
             'label' => 'required|max:128',
             'url' => 'required|max:256|url',
         ];
+    }
+    
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json($validator->errors(), 422));
     }
 }

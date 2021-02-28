@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\SocialNetwork;
 use Illuminate\Http\Request;
+use App\Http\Requests\SocialNetworkRequest;
 
 class SocialNetworkController extends Controller
 {
@@ -15,7 +16,7 @@ class SocialNetworkController extends Controller
      */
     public function index()
     {
-        $socialNetworks = SocialNetwork::orderBy('name', 'asc')->get();
+        $socialNetworks = SocialNetwork::orderBy('network', 'asc')->get();
         return response()->json(['data' => $socialNetworks], 200);
     }
 
@@ -26,9 +27,9 @@ class SocialNetworkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SocialNetworkRequest $socialNetworkRequest)
     {
-        $socialNetwork = SocialNetwork::create($request->all());
+        $socialNetwork = SocialNetwork::create($socialNetworkRequest->all());
 
         return response()->json(['data' => $socialNetwork], 201);
     }
@@ -53,9 +54,9 @@ class SocialNetworkController extends Controller
      * @param  \App\Models\Link  $link
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SocialNetwork $socialNetwork)
+    public function update(SocialNetworkRequest $socialNetworkRequest, SocialNetwork $socialNetwork)
     {
-        $socialNetwork->update($request->all());
+        $socialNetwork->update($socialNetworkRequest->all());
 
         return response()->json(['data' => $socialNetwork], 200);
     }
